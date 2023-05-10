@@ -37,12 +37,8 @@ class Signaling {
 
   final _iceServers = {
     'iceServers': [
-      {
-        // coturn server
-        'urls': ['turn:80.211.89.209:3478'],
-        'username': 'coturn',
-        'credential': 'coturn',
-      },
+      //sturn server
+       { 'urls': 'stun:stun.l.google.com:19302' },
     ]
   };
 
@@ -78,7 +74,7 @@ class Signaling {
 
   bool isMicEnabled() {
     if (_localStream != null) {
-      return _localStream!.getVideoTracks().first.enabled;
+      return _localStream!.getAudioTracks().first.enabled;
     }
 
     return true;
@@ -114,7 +110,7 @@ class Signaling {
 
   void muteMic() {
     if (_localStream != null) {
-      _localStream!.getVideoTracks()[0].enabled = !isMicEnabled();
+      _localStream!.getAudioTracks()[0].enabled = !isMicEnabled();
     }
   }
 
